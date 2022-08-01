@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--    加载properties文件-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!--    设置别名-->
+    <typeAliases>
+        <!--        方式1：给单个实体类起别名-->
+        <!--        <typeAlias type="domain.User" alias="User"></typeAlias>-->
+        <!--        方式2：批量起别名（别名不区分大小写）-->
+        <package name="domain"/>
+    </typeAliases>
+
+
+    <!--   PageHelper3.7.5配置-->
+<!--    <plugins>-->
+<!--        <plugin interceptor="com.github.pagehelper.PageHelper">-->
+<!--            &lt;!&ndash;            指定方言：mysql分页关键字limit&ndash;&gt;-->
+<!--            <property name="dialect" value="mysql"/>-->
+<!--        </plugin>-->
+<!--    </plugins>-->
+
+    <!--    PageHelper5.3.0配置-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- config params as the following -->
+<!--            <property name="helper-dialect" value="mysql"/>-->
+        </plugin>
+    </plugins>
+
+    <!--    environments：运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--
+                transactionManager 事务管理器
+                JDBC/MANAGED
+            -->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--
+                使用mybatis的连接池
+            -->
+            <!--            <dataSource type="POOLED">-->
+            <!--                <property name="driver" value="com.mysql.jdbc.Driver"/>-->
+            <!--                <property name="url" value="jdbc:mysql:///mybatis_db"/>-->
+            <!--                <property name="username" value="root"/>-->
+            <!--                <property name="password" value="123456"/>-->
+            <!--            </dataSource>-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+
+        </environment>
+    </environments>
+
+    <!--    引入映射配置文件-->
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"></mapper>
+        <!--        <mapper resource="mapper/IUserMapper.xml"></mapper>-->
+
+        <!--        接口和映射文件需要同包同名-->
+        <!--        <mapper class="mapper.IUserMapper"></mapper>-->
+        <!--        批量加载映射-->
+        <package name="mapper"/>
+    </mappers>
+</configuration>
+

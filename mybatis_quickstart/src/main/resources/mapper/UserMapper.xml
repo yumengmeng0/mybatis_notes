@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  namespace与id属性共同构成唯一标识：user.findAll -->
+<mapper namespace="userMapper">
+    <!--
+        sql语句后面不加分号
+        resultType：返回结果类型（自动完成映射封装）
+    -->
+    <select id="findAll" resultType="user">select * from user</select>
+    <!--
+        #{} ：mybatis中的占位符，等同于JDBC的?
+        parameterType：指定接收到的参数类型
+    -->
+    <insert id="saveUser" parameterType="User">
+        insert into user(username, birthday, sex, address) values(#{username}, #{birthday}, #{sex}, #{address})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update user set username = #{username}, birthday = #{birthday}, sex = #{sex}, address = #{address} where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+</mapper>
