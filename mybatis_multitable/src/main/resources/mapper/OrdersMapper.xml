@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.OrdersMapper">
+
+    <resultMap id="orderMap" type="domain.Orders">
+        <id property="id" column="id"></id>
+        <id property="ordertime" column="ordertime"></id>
+        <id property="total" column="total"></id>
+        <id property="uid" column="uid"></id>
+
+        <!--
+            association：一对一关联查询配置
+            property="user"  要封装的实体属性名
+            javaType="domain.User"  要封装的实体属类型
+        -->
+
+        <association property="user" javaType="domain.User">
+            <id property="id" column="uid"></id>
+            <result property="username" column="username"></result>
+            <result property="password" column="password"></result>
+            <result property="birthday" column="birthday"></result>
+        </association>
+    </resultMap>
+    <select id="findAllWithUser" resultMap="orderMap">
+        SELECT * FROM orders o LEFT JOIN USER u ON o.uid = u.id
+    </select>
+
+
+    <resultMap id="orderMap2" type="domain.Orders">
+        <id property="id" column="id"></id>
+        <id property="ordertime" column="ordertime"></id>
+        <id property="total" column="total"></id>
+        <id property="uid" column="uid"></id>
+        <!--
+            嵌套查询
+            调用mapper.UserMapper.findById(uid)查询user
+        -->
+        <association property="user" javaType="domain.User" select="mapper.UserMapper.findByUid" column="uid">
+        </association>
+    </resultMap>
+    <select id="findAllWithUser2" resultMap="orderMap2">
+        select * from orders
+    </select>
+    <select id="findByUid" resultType="domain.Orders" parameterType="int">
+        select * from orders where id = #{uid}
+    </select>
+
+
+</mapper>

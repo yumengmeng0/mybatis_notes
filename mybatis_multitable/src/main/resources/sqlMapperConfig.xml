@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--    加载properties文件-->
+    <properties resource="jdbc.properties"></properties>
+
+    <settings>
+        <!--        全局延迟加载的开关-->
+        <!--        <setting name="lazyLoadingEnabled" value="true"/>-->
+        <!--        <setting name="aggressiveLazyLoading" value="false"/>-->
+        <!--       调用value中的方法时才加载 -->
+        <setting name="lazyLoadTriggerMethods" value="toString()"/>
+    </settings>
+
+    <!--    设置别名-->
+    <typeAliases>
+        <!--        方式1：给单个实体类起别名-->
+        <!--        <typeAlias type="domain.User" alias="User"></typeAlias>-->
+        <!--        方式2：批量起别名（别名不区分大小写）-->
+        <package name="domain"/>
+    </typeAliases>
+    <!--    environments：运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--
+                transactionManager 事务管理器
+                JDBC/MANAGED
+            -->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--
+                使用mybatis的连接池
+            -->
+            <!--            <dataSource type="POOLED">-->
+            <!--                <property name="driver" value="com.mysql.jdbc.Driver"/>-->
+            <!--                <property name="url" value="jdbc:mysql:///mybatis_db"/>-->
+            <!--                <property name="username" value="root"/>-->
+            <!--                <property name="password" value="123456"/>-->
+            <!--            </dataSource>-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+
+
+        </environment>
+    </environments>
+
+    <!--    引入映射配置文件-->
+    <mappers>
+        <package name="mapper"/>
+        <!--        <mapper resource="mapper/OrdersMapper.xml"></mapper>-->
+        <!--        <mapper resource="mapper/UserMapper.xml"></mapper>-->
+    </mappers>
+</configuration>

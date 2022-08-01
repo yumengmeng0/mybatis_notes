@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.RoleMapper">
+
+    <resultMap id="roleMap" type="domain.Role">
+        <id property="id" column="id"></id>
+        <result property="rolename" column="rolename"></result>
+        <result property="roleDesc" column="roleDesc"></result>
+    </resultMap>
+
+    <!--    通过用户id查询角色-->
+    <select id="findByUid" resultMap="roleMap" parameterType="int">
+        select * from sys_role r left join sys_user_role ur on r.id = ur.roleid
+                where ur.userid = #{uid}
+    </select>
+</mapper>

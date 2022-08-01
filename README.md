@@ -75,21 +75,36 @@ GitHub地址：https://github.com/mybatis/mybatis-3
     
 # PageHelper
 
-旧版本3.7.5配置
-
-```xml
-
-    <plugins>
-        <plugin interceptor="com.github.pagehelper.PageHelper">
-            <!--            指定方言：limit-->
-            <property name="dialect" value="mysql"/>
-        </plugin>
-    </plugins>
-
-```
 
 ## 数据库表的关系
     一对一
     一对多
     多对多
     * mybatis把多对多看成一对一
+
+## mybatis多表配置
+    * 多对一（一对一）：<resultMap> + <association>
+    * 一对多：<resultMap> + <collection>
+    * 多对多：<resultMap> + <collection>，多对多和一对一很相似，难度在于sql语句的编写
+    
+## 嵌套查询（复用已定义的查询函数）
+    嵌套查询是将原来多表查询中的联合语句拆成单个表的查询，再使用mybatis语法嵌套在一起
+
+### 一对一嵌套查询
+### 一对多嵌套查询
+### 多对多嵌套查询
+
+
+# 加载策略
+    * 立即加载
+    * 延迟加载（懒加载）：在需要用到数据时才进行加载
+        * 优点：先从单表查询，需要时再从关联表查询，大大提高数据库性能
+        * 缺点：大批量数据查询可能造成用户等待时间变长
+    
+    * 多表中
+        一对多，多对多，采用延迟加载
+        一对一，多对一，立即加载
+    
+    * 延迟加载基于嵌套查询实现    
+
+# 注解开发
