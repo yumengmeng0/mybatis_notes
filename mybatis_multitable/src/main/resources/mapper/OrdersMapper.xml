@@ -27,7 +27,6 @@
         SELECT * FROM orders o LEFT JOIN USER u ON o.uid = u.id
     </select>
 
-
     <resultMap id="orderMap2" type="domain.Orders">
         <id property="id" column="id"></id>
         <id property="ordertime" column="ordertime"></id>
@@ -37,15 +36,16 @@
             嵌套查询
             调用mapper.UserMapper.findById(uid)查询user
         -->
-        <association property="user" javaType="domain.User" select="mapper.UserMapper.findByUid" column="uid">
+        <association property="user" javaType="domain.User" select="mapper.UserMapper.findById" column="uid">
         </association>
     </resultMap>
+
     <select id="findAllWithUser2" resultMap="orderMap2">
         select * from orders
     </select>
-    <select id="findByUid" resultType="domain.Orders" parameterType="int">
-        select * from orders where id = #{uid}
-    </select>
 
+    <select id="findByUid" resultType="domain.Orders" parameterType="int">
+        select * from orders where uid = #{uid}
+    </select>
 
 </mapper>

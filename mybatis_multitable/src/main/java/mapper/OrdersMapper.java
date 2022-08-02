@@ -24,5 +24,5 @@ public interface OrdersMapper {
      */
     public List<Orders> findAllWithUser2();
 
-    public Orders findByUid(Integer uid);
+    public List<Orders> findByUid(Integer uid);
 }

@@ -95,7 +95,7 @@ GitHub地址：https://github.com/mybatis/mybatis-3
 ### 多对多嵌套查询
 
 
-# 加载策略
+# 加载策略（延迟加载基于*嵌套查询*实现）
     * 立即加载
     * 延迟加载（懒加载）：在需要用到数据时才进行加载
         * 优点：先从单表查询，需要时再从关联表查询，大大提高数据库性能
@@ -105,6 +105,49 @@ GitHub地址：https://github.com/mybatis/mybatis-3
         一对多，多对多，采用延迟加载
         一对一，多对一，立即加载
     
-    * 延迟加载基于嵌套查询实现    
+
+## 全局延迟加载策略和局部迟加载策
+局部延迟加载策略优先级高于全局迟加载策
+
+```xml
+
+    <settings>
+        <!--        全局延迟加载的开关-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+    </settings>                   
+```
+
+```xml
+    <collection fetchType="lazy" >
+    </collection>   
+```
+
+
+
+# MyBatis缓存
+
+## 一级缓存
+    SqlSession级别，默认开启
+    
+    执行SqlSession的C（增加）U（更新）D（删除）操作，或调用从clearCache()、commit()、close()方法，都会清空缓存
+    
+    <select flushCache="true"></select>
+    
+## 二级缓存
+    namespace级别（跨SqlSession），默认关闭
+    实现二级缓存，返回的POJO必须是可序列化的（实现Serializable接口）。
+    配置方法：映射文件添加<cache/>
+
+```xml
+        <!--        全局性地开启或关闭所有映射器配置文件中已配置的任何缓存。 默认true-->
+        <setting name="cacheEnabled" value="true"/>
+```
+
+```xml
+        <!--映射文件添加-->
+        <cache/>
+```
+### 二级缓存脏读
+    * 建议不要使用MyBatis二级缓存，需要第第三方缓存技术解决（Redis）
 
 # 注解开发

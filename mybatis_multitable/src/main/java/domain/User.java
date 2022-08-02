@@ -2,6 +2,7 @@ package domain;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,8 @@ import java.util.List;
  * 为了测试mybatis中头String方法的延迟加载效果，没有用@Data注解生成toString方法
  */
 
-public class User {
+public class User implements Serializable {
+
     private Integer id;
     private String username;
     private String password;
