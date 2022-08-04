@@ -32,6 +32,12 @@ public class MybatisTest {
 
         for (User user : userList) {
             System.out.println("user = " + user);
+            List<Orders> ordersList = user.getOrdersList();
+            System.out.println("ordersList = " + ordersList);
+        }
+
+        for (User user : userList) {
+            System.out.println("user = " + user);
         }
 
         sqlSession.close();

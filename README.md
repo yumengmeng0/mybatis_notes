@@ -94,7 +94,7 @@ GitHub地址：https://github.com/mybatis/mybatis-3
 ### 一对多嵌套查询
 ### 多对多嵌套查询
 
-
+# !!! 延迟加载策略配置和想象不一样需要深入学习
 # 加载策略（延迟加载基于*嵌套查询*实现）
     * 立即加载
     * 延迟加载（懒加载）：在需要用到数据时才进行加载
@@ -107,22 +107,29 @@ GitHub地址：https://github.com/mybatis/mybatis-3
     
 
 ## 全局延迟加载策略和局部迟加载策
-局部延迟加载策略优先级高于全局迟加载策
+局部延迟加载策略优先级高于全局迟加载策（就近原则）
 
+
+### 全局延迟加载策略的设置
+
+配置文件设置：
 ```xml
 
     <settings>
         <!--        全局延迟加载的开关-->
         <setting name="lazyLoadingEnabled" value="true"/>
+        <!--    value="" 会覆盖掉默认的4个方法，对所有方法延迟加载，只有需要用到对象的数据时才会加载 -->
+        <setting name="lazyLoadTriggerMethods" value=""/>
     </settings>                   
 ```
 
+### 局部延迟加载策略的设置
+
+配置映射文件：
 ```xml
     <collection fetchType="lazy" >
     </collection>   
 ```
-
-
 
 # MyBatis缓存
 
@@ -151,3 +158,25 @@ GitHub地址：https://github.com/mybatis/mybatis-3
     * 建议不要使用MyBatis二级缓存，需要第第三方缓存技术解决（Redis）
 
 # 注解开发
+
+## MyBatis常用注解
+
+| 注解 | mapper配置 |
+| --- | --- |
+| @Insert | <insert></insert> | 
+| @Delete | <delete></delete> | 
+| @Update | <update></update> | 
+| @Select | <select></select> | 
+| @Result | <result></result> | 
+| @Results | <resultMap></resultMap> | 
+| @One | <association></association> | 
+| @Many | <collection></collection> | 
+
+## 注解延迟加载 
+    fetchType = FetchType.DEAFAULT  使用全局配置
+    fetchType = FetchType.EAGER
+    fetchType = FetchType.LAZY
+    
+## 注解和配置文件的比较
+    * 注解简单效率高
+    * 配置文件可维护性强，不需要修改源码

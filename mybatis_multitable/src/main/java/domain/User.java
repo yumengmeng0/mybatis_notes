@@ -11,8 +11,6 @@ import java.util.List;
  * @date: 2022/7/29
  * @version: 1.0.0
  * @description:
- *
- * 为了测试mybatis中头String方法的延迟加载效果，没有用@Data注解生成toString方法
  */
 
 public class User implements Serializable {

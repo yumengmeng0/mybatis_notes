@@ -15,7 +15,8 @@
             fetchType="eager" 立即加载
          -->
         <collection property="ordersList" ofType="domain.Orders" select="mapper.OrdersMapper.findByUid" column="id"
-                    fetchType="lazy">
+        >
+<!--                    fetchType="lazy"-->
         </collection>
     </resultMap>
 

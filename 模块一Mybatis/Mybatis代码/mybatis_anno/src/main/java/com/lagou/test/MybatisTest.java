@@ -28,9 +28,7 @@ public class MybatisTest {
     @Before
     public void before() throws IOException {
         InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
-
          sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-
          sqlSession = sqlSessionFactory.openSession();
     }
 
@@ -134,7 +132,7 @@ public class MybatisTest {
 
         for (User user : allWithOrder) {
             System.out.println(user);
-            System.out.println(user.getOrdersList());
+            System.out.println("user.getOrdersList()" + user.getOrdersList());
         }
 
 

@@ -11,7 +11,7 @@
         <!--        延迟加载的全局开关。当开启时，所有关联对象都会延迟加载。 特定关联关系中可通过设置 fetchType 属性来覆盖该项的开关状态。-->
         <setting name="lazyLoadingEnabled" value="true"/>
         <!--        开启时，任一方法的调用都会加载该对象的所有延迟加载属性。 否则，每个延迟加载属性会按需加载（参考 lazyLoadTriggerMethods)。-->
-        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--        <setting name="aggressiveLazyLoading" value="false"/>-->
 
         <!--
             lazyLoadTriggerMethods的默认值是：
@@ -19,10 +19,10 @@
             当调用对象的这些方法是也会加载
         -->
         <!--       调用value中的方法时才加载 -->
-
         <!--
             lazyLoadTriggerMethods	指定对象的哪些方法触发一次延迟加载。用逗号分隔的方法列表。
                     默认值:equals,clone,hashCode,toString
+                    这些方法调用时，会立即加载
          -->
         <setting name="lazyLoadTriggerMethods" value=""/>
         <!--        全局性地开启或关闭所有映射器配置文件中已配置的任何缓存。 默认true-->

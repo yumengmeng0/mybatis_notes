@@ -27,6 +27,7 @@ public class MybatisTest {
     public void findAllWithUser() throws IOException {
         InputStream resource = Resources.getResourceAsStream("sqlMapperConfig.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resource);
+
         try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
             OrdersMapper mapper = sqlSession.getMapper(OrdersMapper.class);
             List<Orders> ordersList = mapper.findAllWithUser();
@@ -41,6 +42,7 @@ public class MybatisTest {
     public void findAllWithUser2() throws IOException {
         InputStream resource = Resources.getResourceAsStream("sqlMapperConfig.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resource);
+
         try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
             OrdersMapper mapper = sqlSession.getMapper(OrdersMapper.class);
             List<Orders> ordersList = mapper.findAllWithUser2();
@@ -123,6 +125,7 @@ public class MybatisTest {
     public void findAllWithRole2() throws IOException {
         InputStream resource = Resources.getResourceAsStream("sqlMapperConfig.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resource);
+
         try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             List<User> userList = mapper.findAllWithRole2();

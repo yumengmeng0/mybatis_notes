@@ -9,10 +9,10 @@
 
     <settings>
         <!--        全局延迟加载的开关-->
-        <!--        <setting name="lazyLoadingEnabled" value="true"/>-->
+        <setting name="lazyLoadingEnabled" value="true"/>
         <!--        <setting name="aggressiveLazyLoading" value="false"/>-->
-        <!--       调用value中的方法时才加载 -->
-        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString()"/>
+        <!--       调用value中的方法时才加载，其他方法延迟加载 -->
+        <setting name="lazyLoadTriggerMethods" value=""/>
 
     </settings>
 

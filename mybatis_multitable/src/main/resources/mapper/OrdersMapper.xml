@@ -6,9 +6,9 @@
 
     <resultMap id="orderMap" type="domain.Orders">
         <id property="id" column="id"></id>
-        <id property="ordertime" column="ordertime"></id>
-        <id property="total" column="total"></id>
-        <id property="uid" column="uid"></id>
+        <result property="ordertime" column="ordertime"></result>
+        <result property="total" column="total"></result>
+        <result property="uid" column="uid"></result>
 
         <!--
             association：一对一关联查询配置
@@ -29,9 +29,9 @@
 
     <resultMap id="orderMap2" type="domain.Orders">
         <id property="id" column="id"></id>
-        <id property="ordertime" column="ordertime"></id>
-        <id property="total" column="total"></id>
-        <id property="uid" column="uid"></id>
+        <result property="ordertime" column="ordertime"></result>
+        <result property="total" column="total"></result>
+        <result property="uid" column="uid"></result>
         <!--
             嵌套查询
             调用mapper.UserMapper.findById(uid)查询user

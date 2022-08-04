@@ -11,8 +11,10 @@ import java.io.Serializable;
  * @description:
  */
 @Data
-public class Role implements Serializable {
+public class Orders implements Serializable {
     private Integer id;
-    private String rolename;
-    private String roleDesc;
+    private String ordertime;
+    private Double total;
+    private Integer uid;
+    private User user;
 }
