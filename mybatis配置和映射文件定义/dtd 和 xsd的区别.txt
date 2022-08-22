@@ -1,0 +1,12 @@
+dtd：document type definition 文档定义。
+
+xsd：xml scheme definition。 xml scheme 定义。
+
+
+dtd 可以用来定义xml 的文档结构。
+
+xsd 也可以用来定义 xml 的文档结构。
+
+但是 dtd 的功能比较少，没有 xsd。
+
+
