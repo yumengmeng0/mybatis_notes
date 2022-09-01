@@ -52,3 +52,7 @@ SELECT u.*,r.id rid,r.rolename,r.roleDesc FROM USER u LEFT JOIN sys_user_role ur
 	LEFT JOIN sys_role r ON ur.roleid = r.id
 
 
+SELECT * FROM sys_role r LEFT JOIN sys_user_role ur ON r.id = ur.roleid
+
+
+ SELECT * FROM orders WHERE id = 1
